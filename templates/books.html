@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Books{% endblock %}
+{% block content %}
+  <h2>Books</h2>
+  <table class="table">
+    <thead>
+      <tr><th>ID</th><th>Title</th><th>Author</th><th>Quantity</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      {% for b in books %}
+        <tr>
+          <td>{{ b[0] }}</td>
+          <td>{{ b[1] }}</td>
+          <td>{{ b[2] }}</td>
+          <td>{{ b[3] }}</td>
+          <td>
+            {% if session.get('role') == 'user' %}
+              <form method="post" action="{{ url_for('user_borrow', book_id=b[0]) }}">
+                <button type="submit">Borrow</button>
+              </form>
+            {% elif session.get('role') == 'librarian' %}
+              <form method="post" action="{{ url_for('remove_book', book_id=b[0]) }}" onsubmit="return confirm('Remove book?')">
+                <button type="submit">Remove</button>
+              </form>
+            {% else %}
+              <span class="small">Login to take actions</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

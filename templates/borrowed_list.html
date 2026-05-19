@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Borrowed Books{% endblock %}
+{% block content %}
+  <h2>Borrowed Books</h2>
+  <table class="table">
+    <thead><tr><th>ID</th><th>Member</th><th>Email</th><th>Title</th><th>Borrowed</th><th>Due</th><th>Returned</th><th>Fine</th></tr></thead>
+    <tbody>
+      {% for b in borrowed %}
+        <tr>
+          <td>{{ b.borrow_id }}</td>
+          <td>{{ b.name }}</td>
+          <td>{{ b.email }}</td>
+          <td>{{ b.title }}</td>
+          <td>{{ b.borrowed_date }}</td>
+          <td>{{ b.due_date }}</td>
+          <td>{{ b.returned_date or 'Not returned' }}</td>
+          <td>{{ b.fine }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

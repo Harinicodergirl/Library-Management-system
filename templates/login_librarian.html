@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Librarian Login{% endblock %}
+{% block content %}
+  <h2>Librarian Login</h2>
+  <form method="post">
+    <label>Email</label>
+    <input type="email" name="email" required />
+    <button type="submit">Login</button>
+  </form>
+{% endblock %}

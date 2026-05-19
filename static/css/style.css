@@ -1,0 +1,77 @@
+*{box-sizing:border-box;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+:root{
+  --bg1:#F1E2D1; /* warm background */
+  --bg2:#DCC3AA; /* secondary warm */
+  --text1:#541A1A; /* deep brown */
+  --text2:#810B38; /* deep magenta */
+  --accent:#810B38;
+  --muted:#6b7280;
+  --card:#ffffff;
+  --table-bg:#000000; /* mb black for tables */
+}
+
+html,body{height:100%}
+body{margin:0;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--text1)}
+.container{max-width:960px;margin:28px auto;padding:0 18px}
+header{background:transparent;color:var(--text1);padding:18px 0}
+header a{color:var(--text2);text-decoration:none}
+header .container{display:flex;align-items:center;justify-content:space-between}
+nav a{margin-left:14px;color:rgba(255,255,255,0.95);font-weight:600}
+h1{margin:0;font-size:20px}
+.centered{display:flex;flex-direction:column;align-items:center}
+.cards{display:flex;gap:16px}
+.card{display:inline-block;padding:22px;background:var(--card);border-radius:12px;text-decoration:none;color:#0f172a;border:1px solid rgba(15,23,42,0.06);box-shadow:0 6px 18px rgba(16,24,40,0.06)}
+.table{width:100%;border-collapse:collapse;background:var(--table-bg);border-radius:8px;overflow:hidden;color:#fff}
+.table th,.table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.06);text-align:left}
+.table thead th{background:#111;opacity:0.95;color:#fff}
+.table td{color:#fff}
+.table tr:hover td{background:#111}
+.grid{display:flex;gap:16px}
+.grid .card{flex:1;padding:20px;background:var(--card)}
+form{display:flex;flex-direction:column;gap:10px;width:100%}
+.centered-form{max-width:420px;width:100%;background:rgba(255,255,255,0.95);padding:20px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,0.06);border:1px solid rgba(2,6,23,0.04)}
+label{font-weight:600;color:var(--muted)}
+input[type=text],input[type=email],input[type=number],button,select{padding:10px 12px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);font-size:14px}
+button{background:var(--accent);color:#fff;border:none;cursor:pointer;padding:10px 14px;border-radius:8px;font-weight:700}
+button:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(79,70,229,0.14)}
+.flashes{list-style:none;padding:0;margin-bottom:12px}
+.flashes li{background:#fff7ed;border-left:4px solid #f97316;padding:10px;margin-bottom:8px;color:#92400e}
+footer{padding:18px 0;text-align:center;color:var(--muted);margin-top:28px}
+.small{font-size:13px;color:var(--muted)}
+.center-block{display:block;margin:0 auto}
+
+/* nav right and dropdown */
+.nav-right{display:flex;align-items:center;gap:12px}
+.btn-link{background:rgba(255,255,255,0.85);color:var(--text2);border:1px solid rgba(0,0,0,0.06);padding:8px 10px;border-radius:8px;font-weight:600}
+.dropdown{position:relative}
+.dropdown-btn{background:rgba(255,255,255,0.12);border:none;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700}
+.dropdown-btn.secondary{background:rgba(255,255,255,0.06)}
+.dropdown-menu{position:absolute;right:0;top:110%;background:var(--card);min-width:150px;border-radius:8px;padding:8px;box-shadow:0 10px 30px rgba(2,6,23,0.12);display:none}
+.dropdown.open .dropdown-menu{display:block}
+.dropdown-menu a{display:block;padding:8px;border-radius:6px;color:#0f172a;text-decoration:none}
+.dropdown-menu a:hover{background:#f1f5f9}
+
+/* center main content */
+main.container.centered{min-height:60vh;display:flex;align-items:center;justify-content:center;padding-top:24px}
+
+/* Hero styles for homepage */
+.hero{
+  width:100%;
+  background:linear-gradient(180deg,rgba(255,255,255,0.65),rgba(255,255,255,0.35));
+  border-radius:18px;
+  padding:60px 30px;
+  box-shadow:0 20px 40px rgba(16,24,40,0.08);
+  text-align:center;
+  margin-bottom:22px;
+}
+.hero h1{font-size:48px;margin:0 0 12px;color:var(--text2);letter-spacing:1px}
+.hero p{font-size:18px;margin:0 0 18px;color:var(--text1)}
+.hero .cta{display:inline-flex;gap:12px}
+.hero .cta a{padding:14px 20px;border-radius:10px;text-decoration:none;font-weight:800}
+.hero .cta .primary{background:var(--text2);color:#fff}
+.hero .cta .secondary{background:transparent;border:2px solid var(--text2);color:var(--text2)}
+
+@media(max-width:880px){.grid{flex-direction:column}.cards{flex-direction:column}.container{padding:0 12px}
+.hero h1{font-size:34px}
+.hero{padding:40px 18px}}
+@media(max-width:640px){.nav-right{gap:8px}.dropdown-menu{right:auto;left:0}}

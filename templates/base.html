@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{% block title %}Library System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1><a href="{{ url_for('index') }}">Library</a></h1>
+        <nav class="nav-right">
+          <a href="{{ url_for('view_books') }}">Books</a>
+
+          {% if session.get('role') == 'user' %}
+            <a class="btn-link" href="{{ url_for('user_dashboard') }}">My Account</a>
+            <a class="btn-link" href="{{ url_for('logout') }}">Logout</a>
+          {% elif session.get('role') == 'librarian' %}
+            <a class="btn-link" href="{{ url_for('librarian_dashboard') }}">Dashboard</a>
+            <a class="btn-link" href="{{ url_for('logout') }}">Logout</a>
+          {% else %}
+            <div class="dropdown">
+              <button class="dropdown-btn">Login ▾</button>
+              <div class="dropdown-menu">
+                <a href="{{ url_for('login_user') }}">User</a>
+                <a href="{{ url_for('login_librarian') }}">Librarian</a>
+              </div>
+            </div>
+
+            <div class="dropdown">
+              <button class="dropdown-btn secondary">Sign Up ▾</button>
+              <div class="dropdown-menu">
+                <a href="{{ url_for('signup_user') }}">User</a>
+                <a href="{{ url_for('signup_librarian') }}">Librarian</a>
+              </div>
+            </div>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <main class="container centered">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for m in messages %}
+              <li>{{ m }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="container">
+      <p>&copy; Library System</p>
+    </footer>
+
+    <script>
+      // simple dropdown toggle
+      document.addEventListener('click', function(e){
+        const isBtn = e.target.closest('.dropdown-btn')
+        // close other dropdowns
+        document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'))
+        if(isBtn){
+          const root = isBtn.closest('.dropdown')
+          root.classList.toggle('open')
+        }
+      })
+    </script>
+  </body>
+</html>

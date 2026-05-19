@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Members{% endblock %}
+{% block content %}
+  <h2>Members</h2>
+  <p><a href="{{ url_for('add_member') }}">Add Member</a></p>
+  <table class="table">
+    <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Due</th><th>Action</th></tr></thead>
+    <tbody>
+      {% for m in members %}
+        <tr>
+          <td>{{ m[0] }}</td>
+          <td>{{ m[1] }}</td>
+          <td>{{ m[2] }}</td>
+          <td>{{ m[3] }}</td>
+          <td>
+            <form method="post" action="{{ url_for('remove_member', member_id=m[0]) }}" onsubmit="return confirm('Remove member?')">
+              <button type="submit">Remove</button>
+            </form>
+            <a class="small" href="{{ url_for('remove_member', member_id=m[0]) }}">Remove (link)</a>
+            <a class="small" href="{{ url_for('remove_member_force', member_id=m[0]) }}" onclick="return confirm('Force remove will delete borrowed records. Continue?')">Force Remove</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
