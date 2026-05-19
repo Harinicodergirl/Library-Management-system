@@ -5,7 +5,7 @@ DB_CONFIG = dict(
     host="localhost",
     database="library_db",
     user="postgres",
-    password="Harini123$"
+    password=""
 )
 
 
